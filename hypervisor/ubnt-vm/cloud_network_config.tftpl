@@ -1,0 +1,16 @@
+#cloud-config
+
+network:
+  version: 2
+  ethernets:
+    enX0:
+      dhcp4: no
+      addresses:
+        - ${ipv4}/${ipv4_prefix}
+      routes:
+        - to: default
+          via: ${ipv4_gw}
+      nameservers:
+        addresses:
+          - ${dns01}
+          - ${dns02}

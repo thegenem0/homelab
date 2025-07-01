@@ -1,0 +1,44 @@
+#cloud-config
+
+hostname: ${name}
+fqdn: ${name}.${subsystem}
+manage_etc_hosts: true
+
+users:
+  - name: ubnt
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: [users, admin, sudo]
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: $6$ZMCc7IxowW8OWeL/$E1LDTZWjN4xp1z0x/6TB9U3ncTFepFwggiKgRv3GkqVhkOICpyc1tIxS4p902tRTtEWlFp1qlnmC7ueSHB2h3/
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJp4F2wbfusefu11I41xvdLBSu0kGUo2cHRK02Akth1e nemethgergo02@gmail.com
+  - default
+
+package_upgrade: true
+growpart:
+  mode: auto
+  devices: ['/']
+ignore_growroot_disabled: false
+
+packages:
+  - bash-completion
+  - curl
+  - wget
+  - python3
+  - python3-pip
+  - git
+  - vim
+  - sudo
+  - openssh-server
+  - cloud-init
+  - cloud-guest-utils
+  - lvm2
+  - apt-transport-https
+  - ca-certificates
+  - gnupg
+  - xe-guest-utilities
+
+runcmd:
+  - [ systemctl, enable, --now, xe-linux-distribution ]
+  - [ python3 -m pip install --user ansible netaddr ]
