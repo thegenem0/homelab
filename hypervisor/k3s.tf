@@ -5,7 +5,7 @@ module "master-01" {
   name      = "master-01"
 
   cpu = 2
-  mem = 4
+  mem = 2
 
   affinity_host = data.xenorchestra_host.host1.id
   network_id    = xenorchestra_bonded_network.network.id
@@ -32,9 +32,9 @@ module "master-02" {
   name      = "master-02"
 
   cpu = 2
-  mem = 4
+  mem = 2
 
-  affinity_host = data.xenorchestra_host.host1.id
+  affinity_host = data.xenorchestra_host.host2.id
   network_id    = xenorchestra_bonded_network.network.id
 
   network = {
@@ -45,7 +45,7 @@ module "master-02" {
 
   disks = [
     {
-      sr_uuid   = data.xenorchestra_sr.pc_ssd.id,
+      sr_uuid   = data.xenorchestra_sr.server_ssd.id,
       disk_name = "k3s-master-02-boot",
       disk_size = 40,
     }

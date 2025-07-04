@@ -1,0 +1,15 @@
+- name: 1. Run prerequisites on all nodes
+  hosts: k3s_cluster
+  become: true
+  roles:
+    - techno_tim.k3s_ansible.prereq
+- name: 2. Bootstrap k3s master nodes
+  hosts: master
+  become: true
+  roles:
+    - techno_tim.k3s_ansible.k3s_server
+- name: 3. Bootstrap k3s worker nodes
+  hosts: node
+  become: true
+  roles:
+    - techno_tim.k3s_ansible.k3s_agent

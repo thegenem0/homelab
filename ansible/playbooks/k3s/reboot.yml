@@ -1,0 +1,7 @@
+- name: Reboot k3s cluster nodes
+  hosts: k3s_cluster
+  become: true
+  tasks:
+    - name: Reboot the nodes and wait for them to come back online
+      ansible.builtin.reboot:
+        reboot_timeout: 360

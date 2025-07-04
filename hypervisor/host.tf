@@ -3,7 +3,7 @@ data "xenorchestra_host" "host1" {
 }
 
 data "xenorchestra_host" "host2" {
-  name_label = "xcp-ng-server"
+  name_label = "xcp-ng-server-01"
 }
 
 data "xenorchestra_pool" "pool" {

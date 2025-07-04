@@ -19,5 +19,5 @@
     ]}";
   };
 
-  # packages = with pkgs; [ ];
+  packages = with pkgs; [ kubectl kubernetes-helm usbutils screen lrzsz ];
 }
